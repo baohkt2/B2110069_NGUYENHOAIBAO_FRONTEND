@@ -1,4 +1,3 @@
-
 import { RouterLink } from 'vue-router';
 <template> 
     <div class="page">
