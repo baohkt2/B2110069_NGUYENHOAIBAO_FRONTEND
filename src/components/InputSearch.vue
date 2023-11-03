@@ -1,3 +1,13 @@
+<template>
+	<div class="input-group">
+		<input type="text" class="form-control" placeholder="Nhập thông tin cần tìm..." :value="modelValue"
+			@input="updateModelValue" @keyup.enter="submit" />
+		<button class="btn btn-outline-primary" type="button" @click="submit">
+			<i class="fas fa-search"></i> Tìm kiếm
+		</button>
+	</div>
+</template>
+
 <script>
 export default {
 	props: {
@@ -9,30 +19,12 @@ export default {
 			this.$emit("update:modelValue", e.target.value);
 		},
 		submit() {
-			this.$emit("submit");
+			if (this.modelValue.trim() === "") {
+				alert("Vui lòng nhập thông tin cần tìm!");
+			} else {
+				this.$emit("submit");
+			}
 		},
 	},
 };
 </script>
-
-<template>
-	<div class="input-group">
-		<input
-			type="text"
-			class="form-control"
-			placeholder="Nhập thông tin cần tìm"
-			:value="modelValue"
-			@input="updateModelValue"
-			@keyup.enter="submit"
-		/>
-		<div class="input-group-append">
-			<button
-				class="btn btn-outline-secondary"
-				type="button"
-				@click="submit"
-			>
-				<i class="fas fa-search"></i> Tìm kiếm
-			</button>
-		</div>
-	</div>
-</template>
